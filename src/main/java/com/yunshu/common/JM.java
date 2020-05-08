@@ -3,13 +3,67 @@ package com.yunshu.common;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Java Language
  */
 public class JM {
+
+    public static Map<String, Object> asMap(Object obj, String... keys) {
+        Map<String, Object> map = new HashMap<>();
+        for (String key : keys) {
+            Object val = get(obj, key);
+            map.put(key, val);
+        }
+        return map;
+    }
+
+    public static Object get(Object map, String key) {
+        Class<?> cls = map.getClass();
+        Field[] fields = cls.getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                String name = field.getName();
+                if (key.equalsIgnoreCase(name)) {
+                    field.setAccessible(true);
+                    Object value = field.get(map);
+                    return value;
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public static void setIfNull(Object thiz, Object... vals) {
+        Field[] fields = thiz.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                field.setAccessible(true);
+                Object obj = field.get(thiz);
+                if (obj != null) {
+                    continue;
+                }
+
+                Class<?> clazz = field.getType();
+                for (Object val : vals) {
+                    if (clazz == val.getClass()) {
+                        field.set(thiz, val);
+                    }
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void makePublic(Method method) {
         if ((!Modifier.isPublic(method.getModifiers()) || !Modifier.isPublic(method.getDeclaringClass().getModifiers())) && !method.isAccessible()) {

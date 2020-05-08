@@ -21,7 +21,7 @@ public class ISMG {
         });
     }
 
-    public static IsmgDo get(long tel) {
+    public static IsmgDo find(long tel) {
         int key = (int) (tel / 10000);
         IsmgDo val = map.get(key);
         if (val == null) {
@@ -32,7 +32,7 @@ public class ISMG {
         }
     }
 
-    public static IsmgDo get(String tel) {
+    public static IsmgDo find(String tel) {
         if (tel.length() > 7) {
             tel = tel.substring(0, 7);
         }

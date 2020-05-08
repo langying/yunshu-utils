@@ -18,6 +18,7 @@ public class ID {
     public static final String HOST    = "host";
     public static final String SHOP    = "shop";
     public static final String SIGN    = "sign";
+    public static final String STAT    = "stat";
     public static final String USER    = "user";
     public static final String TOKEN   = "token";
     public static final String KAPTCHA = "kaptcha";
