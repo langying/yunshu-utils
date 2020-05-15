@@ -32,6 +32,17 @@ public class ISMG {
         }
     }
 
+    public static void find(long tel, IsmgAction action) {
+        int key = (int) (tel / 10000);
+        IsmgDo val = map.get(key);
+        if (val == null) {
+            action.run(0, "", "");
+        }
+        else {
+            action.run(val.ismg, val.prov, val.city);
+        }
+    }
+
     public static IsmgDo find(String tel) {
         if (tel.length() > 7) {
             tel = tel.substring(0, 7);
@@ -42,6 +53,19 @@ public class ISMG {
         }
         else {
             return val;
+        }
+    }
+
+    public static void find(String tel, IsmgAction action) {
+        if (tel.length() > 7) {
+            tel = tel.substring(0, 7);
+        }
+        IsmgDo val = map.get(FF.toInt(tel, 0));
+        if (val == null) {
+            action.run(0, "", "");
+        }
+        else {
+            action.run(val.ismg, val.prov, val.city);
         }
     }
 
@@ -72,7 +96,21 @@ public class ISMG {
 
         @Override
         public String toString() {
-            return FF.log("{}-{}-{}", prov, city, ismg);
+            switch (ismg) {
+            case 1:
+                return FF.log("{} {} {}", prov, city, "移动");
+            case 2:
+                return FF.log("{} {} {}", prov, city, "联通");
+            case 3:
+                return FF.log("{} {} {}", prov, city, "电信");
+            default:
+                return FF.log("{} {} {}", prov, city, "未知");
+            }
         }
+    }
+
+    @FunctionalInterface
+    public interface IsmgAction {
+        void run(int ismg, String prov, String city);
     }
 }

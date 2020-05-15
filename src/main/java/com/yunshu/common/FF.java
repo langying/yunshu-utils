@@ -22,6 +22,10 @@ public class FF {
     public static final String yyyyMMddHHmmss1 = "yyyy-MM-dd HH:mm:ss";
     public static final String yyyyMMddHHmmssE = "yyyy-MM-dd HH:mm:ss E";
 
+    public static int len(String str) {
+        return str == null ? 0 : str.length();
+    }
+
     public static boolean isLen(String str, int len) {
         return str == null ? false : str.length() == len;
     }
