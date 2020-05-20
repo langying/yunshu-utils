@@ -50,6 +50,10 @@ public class TM {
     }
 
     public static Date toDate(String txt) {
+        return toDate(txt, null);
+    }
+
+    public static Date toDate(String txt, Date val) {
         try {
             int len = txt == null ? 0 : txt.length();
             switch (len) {
@@ -83,16 +87,7 @@ public class TM {
         catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
-    }
-
-    public static Date toDate(String txt, SimpleDateFormat fmt) {
-        try {
-            return fmt.parse(txt);
-        }
-        catch (ParseException e) {
-        }
-        return null;
+        return val;
     }
 
     public static Date toDate(int time) {

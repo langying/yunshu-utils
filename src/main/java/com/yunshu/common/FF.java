@@ -60,9 +60,10 @@ public class FF {
         }
     }
 
-    public static int toInt(String txt, int val) {
+    public static Integer toInt(String txt, Integer val) {
         try {
-            return Integer.parseInt(txt);
+            Integer num = Integer.valueOf(txt);
+            return num == null ? val : num;
         }
         catch (Exception e) {
             return val;
@@ -76,9 +77,10 @@ public class FF {
         return txt;
     }
 
-    public static long toLong(String txt, long val) {
+    public static Long toLong(String txt, Long val) {
         try {
-            return Long.parseLong(txt);
+            Long num = Long.valueOf(txt);
+            return num == null ? val : num;
         }
         catch (Exception e) {
             return val;
@@ -287,6 +289,10 @@ public class FF {
     @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> asMap(Object... args) {
         Map<K, V> map = new HashMap<>();
+        if (args == null || args.length <= 1) {
+            return map;
+        }
+
         for (int idx = 0, len = args.length / 2; idx < len; idx++) {
             K k = (K) args[idx * 2 + 0];
             V v = (V) args[idx * 2 + 1];
