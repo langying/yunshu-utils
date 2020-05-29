@@ -157,7 +157,8 @@ public class FF {
     }
 
     public static String trim(String src, String val) {
-        return src == null ? val : src.trim();
+        src = src == null ? "" : src.trim();
+        return src.length() <= 0 ? val : src;
     }
 
     public static String log(String txt, Object... args) {

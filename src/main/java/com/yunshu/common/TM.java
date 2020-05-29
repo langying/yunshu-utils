@@ -15,10 +15,12 @@ import com.yunshu.common.ext.CMPP;
 
 public class TM {
 
-    public static final long HOUR = 3600 * 1000;
-    public static final long DAY  = 3600 * 1000 * 24;
-    public static final long WEEK = 3600 * 1000 * 24 * 7;
-    public static final long YEAR = 3600 * 1000 * 24 * 7 * 365;
+    public static final long SECOND = 1000;
+    public static final long MINUTE = 60 * 1000;
+    public static final long HOUR   = 3600 * 1000;
+    public static final long DAY    = 3600 * 1000 * 24;
+    public static final long WEEK   = 3600 * 1000 * 24 * 7;
+    public static final long YEAR   = 3600 * 1000 * 24 * 7 * 365;
 
     public static final SimpleDateFormat FMT1 = new SimpleDateFormat("yyyyMMdd", Locale.CHINESE);
     public static final SimpleDateFormat FMT2 = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINESE);
