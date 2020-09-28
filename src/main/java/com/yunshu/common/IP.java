@@ -1,5 +1,7 @@
 package com.yunshu.common;
 
+import java.io.File;
+
 import org.lionsoul.ip2region.DataBlock;
 import org.lionsoul.ip2region.DbConfig;
 import org.lionsoul.ip2region.DbSearcher;
@@ -11,8 +13,10 @@ public class IP {
 
     static {
         DbSearcher tmp = null;
+        String file = OS.isWin() ? "D:/data/ip2region.db" : IO.getHomePath("data/ip2region.db");
+        FF.println("IP db file is:{}, exist:{}", file, new File(file).exists());
         try {
-            tmp = new DbSearcher(new DbConfig(), IO.getHomePath("/data/ip2region.db"));
+            tmp = new DbSearcher(new DbConfig(), file);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -24,21 +28,29 @@ public class IP {
         try {
             if (Util.isIpAddress(ip)) {
                 DataBlock data = db.memorySearch(ip);
-                String[] info = data.getRegion().split("\\|");
-                String prov = info[2].replaceAll("省", "");
-                String city = info[3].replaceAll("市", "");
-                if ("0".equals(city)) {
-                    city = prov;
+                if (data == null || data.getRegion() == null) {
+                    FF.println("IP::find({}) is null.", ip);
+                    action.run("-1", "-1", "-1", "-1", "-1");
                 }
-                action.run(info[0], prov, city, info[1], info[4]);
+                else {
+                    String[] info = data.getRegion().split("\\|");
+                    String prov = info[2].replaceAll("省", "");
+                    String city = info[3].replaceAll("市", "");
+                    if ("0".equals(city)) {
+                        city = prov;
+                    }
+                    action.run(info[0], prov, city, info[1], info[4]);
+                }
             }
             else {
+                FF.println("IP::find({}) is error.", ip);
                 action.run("0", "0", "0", "0", "0");
             }
         }
         catch (Exception e) {
             e.printStackTrace();
-            action.run("-1", "-1", "-1", "-1", "-1");
+            FF.println("IP::find({}) is exception.", ip);
+            action.run("-2", "-2", "-2", "-2", "-2");
         }
     }
 
@@ -48,7 +60,7 @@ public class IP {
     }
 
     public static void main(String[] args) {
-        IP.find("13.65.201.223", (state, prov, city, code, ismg) -> {
+        IP.find("127.0.0.1", (state, prov, city, code, ismg) -> {
             FF.println("{},{},{},{},{}", state, prov, city, code, ismg);
         });
     }

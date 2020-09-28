@@ -13,7 +13,10 @@ public class ISMG {
     private static final IsmgDo kIsmgDo = IsmgDo.valueOf("", "", "");
 
     static {
-        IO.forEach(new File(IO.getHomePath("data/ismg.csv")), (line, index, stop) -> {
+        String file = OS.isWin() ? "D:/data/ismg.csv" : IO.getHomePath("data/ismg.csv");
+        FF.println("ISMG db file is:{}, exist:{}", file, new File(file).exists());
+
+        IO.forEach(new File(file), (line, index, stop) -> {
             String[] list = line == null ? kEmpty : line.split(",");
             if (list.length == 7) {
                 map.put(Integer.valueOf(list[1]), IsmgDo.valueOf(list[2], list[3], list[4]));

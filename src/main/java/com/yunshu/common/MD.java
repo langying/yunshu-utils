@@ -125,6 +125,58 @@ public class MD {
         return num + 10000000000L;
     }
 
+    public static String encodeNumb(long numb) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(CA[(int) (numb & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 6) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 12) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 18) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 24) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 30) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 36) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 42) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 48) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 54) & 0x3F)]);
+        sb.append(CA[(int) ((numb >> 60) & 0x3F)]);
+
+        for (int i = sb.length() - 1; i >= 0; i--) {
+            if (sb.charAt(i) == CA[0]) {
+                sb.deleteCharAt(i);
+            }
+            else {
+                break;
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static long decodeNumb(String code) {
+        if (code == null || code.length() <= 0) {
+            return 0;
+        }
+        if (code.length() < 11) {
+            int l = 11 - code.length();
+            for (int i = 0; i < l; i++) {
+                code += CA[0];
+            }
+        }
+
+        long num = 0;
+        num |= AC[code.charAt(0)];
+        num |= AC[code.charAt(1)] << 6;
+        num |= AC[code.charAt(2)] << 12;
+        num |= AC[code.charAt(3)] << 18;
+        num |= AC[code.charAt(4)] << 24;
+        num |= AC[code.charAt(5)] << 30;
+        num |= AC[code.charAt(6)] << 36;
+        num |= AC[code.charAt(7)] << 42;
+        num |= AC[code.charAt(8)] << 48;
+        num |= AC[code.charAt(9)] << 54;
+        num |= AC[code.charAt(10)] << 60;
+        return num;
+    }
+
     public static void main(String[] args) {
         System.out.println(MD.encodeInt(10000));
 
@@ -139,7 +191,7 @@ public class MD {
         int num2 = decodeInt(code);
         System.out.println(num2);
 
-        System.out.println("===============================");
+        System.out.println("===============LONG================");
 
         long lon1 = Long.MIN_VALUE;
         System.out.println(lon1);
@@ -148,7 +200,7 @@ public class MD {
         long lon2 = decodeLong(lons);
         System.out.println(lon2);
 
-        System.out.println("===============================");
+        System.out.println("================TELS===============");
 
         long n = 18094714299L;
         System.out.println(n);
@@ -158,5 +210,14 @@ public class MD {
         System.out.println(m);
 
         System.out.println(encodeInt(10000));
+
+        System.out.println("================NUMB===============");
+
+        long numb1 = 18094714299L;
+        System.out.println(numb1);
+        String numb2 = encodeNumb(numb1);
+        System.out.println(numb2);
+        long numb3 = decodeNumb(numb2);
+        System.out.println(numb3);
     }
 }

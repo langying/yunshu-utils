@@ -38,7 +38,14 @@ import org.apache.http.util.EntityUtils;
 
 public class IE {
 
-    public static final int TIME_OUT = 3000;
+    public static final String kUA = "Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; OPPO R11s Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.80 Mobile Safari/537.36 HeyTapBrowser/10.7.4.2";
+
+    public static final String ADR = "Mozilla/5.0 (Linux; Android 10; HLK-AL10; HMSCore 4.0.4.301) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108";
+    public static final String IOS = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E216 MicroMessenger/7.0.12(0x17000c30) NetType/WIFI Language/zh_CN ";
+    public static final String MAC = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15";
+    public static final String WIN = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+
+    public static final int TIME_OUT = 5000;
 
     public static final int GET  = 0;
     public static final int POST = 1;
@@ -358,7 +365,7 @@ public class IE {
         return args;
     }
 
-    private static CloseableHttpClient makeClient(String proxyScheme, String proxyHost, int proxyPort) {
+    public static CloseableHttpClient makeClient(String proxyScheme, String proxyHost, int proxyPort) {
         try {
             SSLContext ctx = SSLContext.getInstance("TLS");
             TrustManager csr = new X509TrustManager() {

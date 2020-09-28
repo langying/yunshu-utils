@@ -15,12 +15,13 @@ import com.yunshu.common.ext.CMPP;
 
 public class TM {
 
-    public static final long SECOND = 1000;
-    public static final long MINUTE = 60 * 1000;
-    public static final long HOUR   = 3600 * 1000;
-    public static final long DAY    = 3600 * 1000 * 24;
-    public static final long WEEK   = 3600 * 1000 * 24 * 7;
-    public static final long YEAR   = 3600 * 1000 * 24 * 7 * 365;
+    public static final long SECOND = 1000L;
+    public static final long MINUTE = 1000L * 60;
+    public static final long HOUR   = 1000L * 3600;
+    public static final long DAY    = 1000L * 3600 * 24;
+    public static final long WEEK   = 1000L * 3600 * 24 * 7;
+    public static final long MONTH  = 1000L * 3600 * 24 * 30;
+    public static final long YEAR   = 1000L * 3600 * 24 * 365;
 
     public static final SimpleDateFormat FMT1 = new SimpleDateFormat("yyyyMMdd", Locale.CHINESE);
     public static final SimpleDateFormat FMT2 = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINESE);
@@ -228,4 +229,34 @@ public class TM {
         return new Date(c.getTimeInMillis() + num * DAY);
     }
 
+    public static Date getDay(Date date, int num) {
+        if (date == null) {
+            date = new Date();
+        }
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+        return new Date(c.getTimeInMillis() + num * DAY);
+    }
+
+    public static Date getMonth(Date date, int num) {
+        if (date == null) {
+            date = new Date();
+        }
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.set(Calendar.DAY_OF_MONTH, 1);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        c.set(Calendar.MONTH, c.get(Calendar.MONTH) + num);
+        return new Date(c.getTimeInMillis());
+    }
 }

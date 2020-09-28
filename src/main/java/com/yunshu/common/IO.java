@@ -100,6 +100,39 @@ public class IO {
         }
     }
 
+    public static <T> String join(T[] arr, String tag) {
+        if (arr == null || arr.length <= 0) {
+            return "";
+        }
+        StringBuilder txt = new StringBuilder();
+        for (int i = 0, l = arr.length - 1; i <= l; i++) {
+            if (i == l) {
+                txt.append(arr[i]);
+            }
+            else {
+                txt.append(arr[i]).append(tag);
+            }
+
+        }
+        return txt.toString();
+    }
+
+    public static <T> String join(List<T> arr, String tag) {
+        if (arr == null || arr.size() <= 0) {
+            return "";
+        }
+        StringBuilder txt = new StringBuilder();
+        for (int i = 0, l = arr.size() - 1; i <= l; i++) {
+            if (i == l) {
+                txt.append(arr.get(i));
+            }
+            else {
+                txt.append(arr.get(i)).append(tag);
+            }
+        }
+        return txt.toString();
+    }
+
     public static <K, V> int forEach(Map<K, V> map, MapAction<K, V> action) {
         int idx = 0;
         if (map == null || map.size() <= 0) {
@@ -171,7 +204,7 @@ public class IO {
 
         try {
             inStream = new FileInputStream(file);
-            inReader = new InputStreamReader(inStream);
+            inReader = new InputStreamReader(inStream, ID.kUTF8);
             inBuffer = new BufferedReader(inReader);
 
             AtomicBoolean stop = new AtomicBoolean(false);
@@ -542,6 +575,34 @@ public class IO {
             ret.run(set);
             set.clear();
         }
+    }
+
+    public static boolean in(String src, Object... dst) {
+        for (Object one : dst) {
+            if (src.equals(one.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean contains(String src, Object... dst) {
+        for (Object one : dst) {
+            if (src.contains(one.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean containsIgnoreCase(String src, Object... dst) {
+        src = src == null ? "" : src.toLowerCase();
+        for (Object one : dst) {
+            if (src.contains(one.toString().toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @FunctionalInterface

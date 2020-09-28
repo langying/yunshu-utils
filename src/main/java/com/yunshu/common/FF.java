@@ -1,7 +1,9 @@
 package com.yunshu.common;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -284,6 +286,15 @@ public class FF {
         }
         ret.delete(ret.length() - tag.length(), ret.length());
         return ret.toString();
+    }
+
+    public static String encodeURL(String str) {
+        try {
+            return URLEncoder.encode(str, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            return "";
+        }
     }
 
     /** List: Arrays.asList<T>(); */
