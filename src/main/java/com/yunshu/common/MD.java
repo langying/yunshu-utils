@@ -1,6 +1,7 @@
 package com.yunshu.common;
 
 import java.security.MessageDigest;
+import java.util.Base64;
 
 public class MD {
 
@@ -14,6 +15,15 @@ public class MD {
         for (int i = 0, l = CA.length; i < l; i++) {
             AC[CA[i]] = i;
         }
+    }
+
+    public static String encodeBase64(String src) {
+        return Base64.getEncoder().encodeToString(src.getBytes());
+    }
+
+    public static String decodeBase64(String src) {
+        byte[] dst = Base64.getDecoder().decode(src.getBytes());
+        return new String(dst, ID.kUTF8);
     }
 
     public static String md5(String src) {
@@ -217,7 +227,7 @@ public class MD {
         System.out.println(numb1);
         String numb2 = encodeNumb(numb1);
         System.out.println(numb2);
-        long numb3 = decodeNumb(numb2);
+        long numb3 = decodeNumb("7l241070V");
         System.out.println(numb3);
     }
 }

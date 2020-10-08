@@ -13,7 +13,7 @@ public class ISMG {
     private static final IsmgDo kIsmgDo = IsmgDo.valueOf("", "", "");
 
     static {
-        String file = OS.isWin() ? "D:/data/ismg.csv" : IO.getHomePath("data/ismg.csv");
+        String file = OS.isWin() ? "D:/data/ismg.csv" : "/data/ismg.csv";
         FF.println("ISMG db file is:{}, exist:{}", file, new File(file).exists());
 
         IO.forEach(new File(file), (line, index, stop) -> {

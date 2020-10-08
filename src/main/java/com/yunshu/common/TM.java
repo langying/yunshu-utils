@@ -52,6 +52,26 @@ public class TM {
         }, 1000, 1000, TimeUnit.MILLISECONDS);
     }
 
+    public static Date ceil(Date time) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time.getTime());
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        return new Date(c.getTimeInMillis());
+    }
+
+    public static Date floor(Date time) {
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time.getTime());
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        return new Date(c.getTimeInMillis() + DAY);
+    }
+
     public static Date toDate(String txt) {
         return toDate(txt, null);
     }

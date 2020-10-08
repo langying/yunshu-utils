@@ -13,7 +13,7 @@ public class IP {
 
     static {
         DbSearcher tmp = null;
-        String file = OS.isWin() ? "D:/data/ip2region.db" : IO.getHomePath("data/ip2region.db");
+        String file = OS.isWin() ? "D:/data/ip2region.db" : "/data/ip2region.db";
         FF.println("IP db file is:{}, exist:{}", file, new File(file).exists());
         try {
             tmp = new DbSearcher(new DbConfig(), file);
