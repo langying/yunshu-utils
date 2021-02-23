@@ -100,6 +100,30 @@ public class IO {
         }
     }
 
+    public static boolean in(Integer value, Integer... args) {
+        if (args == null || args.length <= 0) {
+            return false;
+        }
+        for (Integer one : args) {
+            if (one == value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean in(Long value, Long... args) {
+        if (args == null || args.length <= 0) {
+            return false;
+        }
+        for (Long one : args) {
+            if (one == value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static <T> String join(T[] arr, String tag) {
         if (arr == null || arr.length <= 0) {
             return "";

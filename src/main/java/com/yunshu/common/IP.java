@@ -17,6 +17,7 @@ public class IP {
         FF.println("IP db file is:{}, exist:{}", file, new File(file).exists());
         try {
             tmp = new DbSearcher(new DbConfig(), file);
+            tmp.memorySearch("127.0.0.1");
         }
         catch (Exception e) {
             e.printStackTrace();

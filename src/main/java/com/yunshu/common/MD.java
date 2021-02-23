@@ -227,7 +227,7 @@ public class MD {
         System.out.println(numb1);
         String numb2 = encodeNumb(numb1);
         System.out.println(numb2);
-        long numb3 = decodeNumb("7l241070V");
+        long numb3 = decodeNumb("722h2Q");
         System.out.println(numb3);
     }
 }
