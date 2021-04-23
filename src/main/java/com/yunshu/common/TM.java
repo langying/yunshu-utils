@@ -30,6 +30,7 @@ public class TM {
     public static final SimpleDateFormat FMT5 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINESE);
     public static final SimpleDateFormat FMT6 = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINESE);
     public static final SimpleDateFormat FMT7 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.CHINESE);
+    public static final SimpleDateFormat FMT8 = new SimpleDateFormat("HH:mm:ss", Locale.CHINESE);
 
     private static final AtomicLong mSMID = new AtomicLong(0);
     private static final AtomicLong mUUID = new AtomicLong(0);

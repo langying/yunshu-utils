@@ -50,11 +50,11 @@ public class IE {
     public static final int GET  = 0;
     public static final int POST = 1;
 
-    public static final String HOST = "Host";
-    public static final String COOK = "Cookie";
-    public static final String REFE = "Referer";
-    public static final String USER = "User-Agent";
-    public static final String ADDR = "x-forwarded-for";
+    public static final String hHost   = "Host";
+    public static final String hCookie = "Cookie";
+    public static final String hUAgent = "User-Agent";
+    public static final String REFE    = "Referer";
+    public static final String hXFF    = "x-forwarded-for";
 
     public static final String kHTML = "text/html;charset=UTF-8";
     public static final String kTEXT = "text/plain;charset=UTF-8";

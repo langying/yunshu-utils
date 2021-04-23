@@ -6,9 +6,11 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -311,5 +313,18 @@ public class FF {
             map.put(k, v);
         }
         return map;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <E> List<E> asList(Object... args) {
+        List<E> arr = new ArrayList<>();
+        if (args == null || args.length <= 1) {
+            return arr;
+        }
+
+        for (int idx = 0, len = args.length; idx < len; idx++) {
+            arr.add((E) args[idx]);
+        }
+        return arr;
     }
 }
