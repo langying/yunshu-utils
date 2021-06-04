@@ -318,7 +318,7 @@ public class FF {
     @SuppressWarnings("unchecked")
     public static <E> List<E> asList(Object... args) {
         List<E> arr = new ArrayList<>();
-        if (args == null || args.length <= 1) {
+        if (args == null || args.length <= 0) {
             return arr;
         }
 
