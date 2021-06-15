@@ -12,6 +12,7 @@ public class ID {
     public static final String UA      = "user-agent";
     public static final String IP      = "ip";
     public static final String API     = "api";
+    public static final String MMID    = "mmid";
     public static final String TTID    = "ttid";
     public static final String UDID    = "udid";
     public static final String UUID    = "uuid";
