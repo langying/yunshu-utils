@@ -257,6 +257,18 @@ public class FF {
         return num;
     }
 
+    public static String top(String... strs) {
+        if (strs == null || strs.length <= 0) {
+            return null;
+        }
+        for (String one : strs) {
+            if (one != null && one.length() > 0) {
+                return one;
+            }
+        }
+        return null;
+    }
+
     public static String replace(String src, String old, String New) {
         if (src == null) {
             return src;

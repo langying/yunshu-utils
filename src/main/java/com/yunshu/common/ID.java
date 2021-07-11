@@ -24,6 +24,11 @@ public class ID {
     public static final String TOKEN   = "token";
     public static final String KAPTCHA = "kaptcha";
 
+    public static final String STT = "stt";
+    public static final String END = "end";
+    public static final String IDX = "idx";
+    public static final String NUM = "num";
+
     private static AtomicInteger mIntID = new AtomicInteger(0);
 
     public static final String kEmpty = "";
